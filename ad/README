@@ -1,0 +1,50 @@
+This file explains how to use the Fwix Ad Network in your Android apps.
+
+1. Copy the fwixadlib.jar file into your libs directory.
+
+
+2. Get an API key from http://developers.fwix.com and put your API key in AndroidManifest.xml:
+
+  <manifest...
+    <application...
+      <meta-data android:name="com.fwix.android.apiKey" android:value="your_api_key" />
+
+Alternatively, you can use the static function FwixAd.setApiKey from the package com.fwix.android.api.ad:
+
+  import com.fwix.android.api.ad;
+    .
+    .
+    .
+  FwixAd.setApiKey("your_api_key");
+
+
+3. Create a FwixAdView View object:
+
+  import com.fwix.android.api.ad;
+    .
+    .
+    .
+  FwixAdView myAdView = new FwixAdView(myActivityContext);
+
+
+or use an XML layout resource:
+
+  <com.fwix.android.api.ad.FwixAdView android:id="@+id/ad"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+and access the object like so:
+
+  FwixAdView adview = (FwixAdView)findViewById(R.id.ad);
+
+
+4. Fetch an ad from Fwix's ad servers using the request() method:
+
+  FwixAdView adview = (FwixAdView)findViewById(R.id.ad);
+  adview.request();
+
+You can target ads by passing an optional query parameter to the request() method:
+
+  FwixAdView adview = (FwixAdView)findViewById(R.id.ad);
+  adview.request("pizza");
+
